@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cronômetro para Igreja</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button class="toggle-menu" onclick="toggleMenu()">☰ Menu</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Controles</h2>
+    <input type="text" id="nomeEtapa" placeholder="Nome da etapa" />
+    <input type="number" id="duracaoEtapa" placeholder="Duração (min)" />
+    <button onclick="adicionarEtapa()">Adicionar</button>
+
+    <div id="listaFixa" style="max-height: 200px; overflow-y: auto; color:#0ff; margin-top:10px;"></div>
+    <hr />
+    <button onclick="iniciarCronometro()">▶️ Iniciar</button>
+    <button onclick="pausarOuRetomar()">⏸️ Pausar/Retomar</button>
+    <button onclick="reiniciarCronometro()">🔁 Reiniciar</button>
+    <button onclick="limparLista()">🗑️ Limpar Lista</button>
+
+    <div class="manual-link">
+      <hr />
+      <a href="README.md" target="_blank" rel="noopener noreferrer">📖 Manual do Usuário</a>
+    </div>
+  </div>
+
+  <div class="cronometro-container">
+    <div id="etapasConcluidas" class="etapas-lista"></div>
+
+    <h1 id="etapaAtual">Aguardando etapas...</h1>
+    <div id="tempoRestante" class="tempo-grande">00:00</div>
+
+    <div id="proximasEtapas" class="etapas-lista"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
