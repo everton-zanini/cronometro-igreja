@@ -21,10 +21,7 @@ function iniciarCronometro() {
   if (etapas.length === 0 || etapaAtualIndex >= etapas.length) return;
 
   pausado = false;
-  // Se estiver no meio de uma etapa, não reinicia tempo
-  if (tempoRestante <= 0) {
-    tempoRestante = etapas[etapaAtualIndex].duracao * 60;
-  }
+  tempoRestante = etapas[etapaAtualIndex].duracao * 60;
   atualizarDisplay();
 
   if (intervalo) clearInterval(intervalo);
@@ -91,4 +88,27 @@ function atualizarListasLaterais() {
 
   concluidasDiv.innerHTML = "<strong>Concluídas:</strong>";
   for (let i = 0; i < etapaAtualIndex; i++) {
-    concluidasDiv.innerHTML +=
+    concluidasDiv.innerHTML += `<span>✔️ ${etapas[i].nome}</span>`;
+  }
+
+  proximasDiv.innerHTML = "<strong>Próximas:</strong>";
+  for (let i = etapaAtualIndex + 1; i < etapas.length; i++) {
+    proximasDiv.innerHTML += `<span>🔜 ${etapas[i].nome}</span>`;
+  }
+}
+
+function atualizarListaFixa() {
+  const listaDiv = document.getElementById('listaFixa');
+  if (etapas.length === 0) {
+    listaDiv.innerHTML = "<em>Nenhuma etapa adicionada</em>";
+    return;
+  }
+  listaDiv.innerHTML = "<strong>Sequência atual:</strong><br>";
+  etapas.forEach((etapa, i) => {
+    listaDiv.innerHTML += `<span>${i + 1}. ${etapa.nome} - ${etapa.duracao} min</span><br>`;
+  });
+}
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('ativo');
+}
